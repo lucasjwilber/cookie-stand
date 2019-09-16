@@ -7,7 +7,7 @@ var seattle = {
   avgCookiesPerCustomer: 6.3,
   customersPerHour() {
     return Math.ceil(Math.random() * 10);
-  }
+  },
   cookiesSoldPerHour: customersPerHour() * avgCookiesPerCustomer,
   dailySales =[],
   //dayCalc() fills the above array with a string saying how many cookies were sold per hour, for every hour within hoursOfOperation
@@ -15,7 +15,7 @@ var seattle = {
     //for every hour of operation, push the sales calc to dailySales
     for (var i = this.hoursOfOperation[0]; i < this.hoursOfOperation[1]; i++) {
       this.dailySales.push(
-        `${this.hoursOfOperation[i]}: ${this.cookiesSoldPerHour} cookies`;
+        `${this.hoursOfOperation[i]}: ${this.cookiesSoldPerHour} cookies`
       );
     }
   },
@@ -27,7 +27,7 @@ var tokyo = {
   avgCookiesPerCustomer: 1.2,
   customersPerHour() {
     return Math.ceil(Math.random() * 10);
-  }
+  },
   cookiesSoldPerHour: customersPerHour() * avgCookiesPerCustomer,
   dailySales =[],
   //dayCalc() fills the above array with a string saying how many cookies were sold per hour, for every hour within hoursOfOperation
@@ -35,7 +35,7 @@ var tokyo = {
     //for every hour of operation, push the sales calc to dailySales
     for (var i = this.hoursOfOperation[0]; i < this.hoursOfOperation[1]; i++) {
       this.dailySales.push(
-        `${this.hoursOfOperation[i]}: ${this.cookiesSoldPerHour} cookies`;
+        `${this.hoursOfOperation[i]}: ${this.cookiesSoldPerHour} cookies`
       );
     }
   },
@@ -47,7 +47,7 @@ var dubai = {
   avgCookiesPerCustomer: 3.7,
   customersPerHour() {
     return Math.ceil(Math.random() * 10);
-  }
+  },
   cookiesSoldPerHour: customersPerHour() * avgCookiesPerCustomer,
   dailySales =[],
   //dayCalc() fills the above array with a string saying how many cookies were sold per hour, for every hour within hoursOfOperation
@@ -55,7 +55,7 @@ var dubai = {
     //for every hour of operation, push the sales calc to dailySales
     for (var i = this.hoursOfOperation[0]; i < this.hoursOfOperation[1]; i++) {
       this.dailySales.push(
-        `${this.hoursOfOperation[i]}: ${this.cookiesSoldPerHour} cookies`;
+        `${this.hoursOfOperation[i]}: ${this.cookiesSoldPerHour} cookies`
       );
     }
   },
@@ -67,7 +67,7 @@ var paris = {
   avgCookiesPerCustomer: 2.3,
   customersPerHour() {
     return Math.ceil(Math.random() * 10);
-  }
+  },
   cookiesSoldPerHour: customersPerHour() * avgCookiesPerCustomer,
   dailySales =[],
   //dayCalc() fills the above array with a string saying how many cookies were sold per hour, for every hour within hoursOfOperation
@@ -75,7 +75,7 @@ var paris = {
     //for every hour of operation, push the sales calc to dailySales
     for (var i = this.hoursOfOperation[0]; i < this.hoursOfOperation[1]; i++) {
       this.dailySales.push(
-        `${this.hoursOfOperation[i]}: ${this.cookiesSoldPerHour} cookies`;
+        `${this.hoursOfOperation[i]}: ${this.cookiesSoldPerHour} cookies`
       );
     }
   },
@@ -87,7 +87,7 @@ var lima = {
   avgCookiesPerCustomer: 4.6,
   customersPerHour() {
     return Math.ceil(Math.random() * 10);
-  }
+  },
   cookiesSoldPerHour: customersPerHour() * avgCookiesPerCustomer,
   dailySales =[],
   //dayCalc() fills the above array with a string saying how many cookies were sold per hour, for every hour within hoursOfOperation
@@ -95,7 +95,7 @@ var lima = {
     //for every hour of operation, push the sales calc to dailySales
     for (var i = this.hoursOfOperation[0]; i < this.hoursOfOperation[1]; i++) {
       this.dailySales.push(
-        `${this.hoursOfOperation[i]}: ${this.cookiesSoldPerHour} cookies`;
+        `${this.hoursOfOperation[i]}: ${this.cookiesSoldPerHour} cookies`
       );
     }
   },

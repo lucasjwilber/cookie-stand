@@ -1,0 +1,52 @@
+/* 
+text:
+  default: font-family: 'Roboto Slab', serif;
+  highlights: font-family: 'Modak', cursive;
+  data: font-family: 'Lato', sans-serif;
+  banner title: font-family: 'Bangers', cursive;
+colors (from darkest to lightest):
+  #3D1C00
+  #854612
+  #BA743A
+  #ECA870
+  #FFD2AD
+*/
+
+
+body {
+  background-color: #854612;
+  text-align: center;
+  font-family: 'Roboto Slab', serif;
+}
+ul {
+  display: inline;
+  padding: 0.5em;
+  background-color: #854612;
+  color: #FFD2AD;
+  float: left;
+  margin: 1em;
+  font-size: 1em;
+}
+li {
+  text-align: left;
+  font-family: 'Lato', sans-serif;
+  background-color: #FFD2AD;
+  color: black;
+  padding: 2px;
+}
+h1 {
+  font-size: 2.5em;
+  font-family: 'Bangers', cursive;
+  background-color: #3D1C00;
+  color: #FFD2AD;
+}
+h3 {
+  font-size: 2em;
+  color: #FFD2AD;
+  background-color: #3D1C00;
+}
+footer {
+  position: absolute:
+  bottom: 0;
+  width: 100%;
+}

@@ -39,7 +39,7 @@ var seattle = {
     salesList.textContent = `${this.location}`;
 
     //for each hour of operation, create an li using info from the dailySales array, and append it to the salesList ul
-    for (var i = 0; i < this.hoursOfOperation.length; i++) {
+    for (var i = 0; i < this.dailySales.length; i++) {
       var li = document.createElement('li');
       li.textContent = this.dailySales[i];
       salesList.appendChild(li);
@@ -87,7 +87,7 @@ var tokyo = {
     salesList.textContent = `${this.location}`;
 
     //for each hour of operation, create an li using info from the dailySales array, and append it to the salesList ul
-    for (var i = 0; i < this.hoursOfOperation.length; i++) {
+    for (var i = 0; i < this.dailySales.length; i++) {
       var li = document.createElement('li');
       li.textContent = this.dailySales[i];
       salesList.appendChild(li);
@@ -135,7 +135,7 @@ var dubai = {
     salesList.textContent = `${this.location}`;
 
     //for each hour of operation, create an li using info from the dailySales array, and append it to the salesList ul
-    for (var i = 0; i < this.hoursOfOperation.length; i++) {
+    for (var i = 0; i < this.dailySales.length; i++) {
       var li = document.createElement('li');
       li.textContent = this.dailySales[i];
       salesList.appendChild(li);
@@ -183,7 +183,7 @@ var paris = {
     salesList.textContent = `${this.location}`;
 
     //for each hour of operation, create an li using info from the dailySales array, and append it to the salesList ul
-    for (var i = 0; i < this.hoursOfOperation.length; i++) {
+    for (var i = 0; i < this.dailySales.length; i++) {
       var li = document.createElement('li');
       li.textContent = this.dailySales[i];
       salesList.appendChild(li);
@@ -231,7 +231,7 @@ var lima = {
     salesList.textContent = `${this.location}`;
 
     //for each hour of operation, create an li using info from the dailySales array, and append it to the salesList ul
-    for (var i = 0; i < this.hoursOfOperation.length; i++) {
+    for (var i = 0; i < this.dailySales.length; i++) {
       var li = document.createElement('li');
       li.textContent = this.dailySales[i];
       salesList.appendChild(li);
@@ -241,3 +241,19 @@ var lima = {
     listsArea.appendChild(salesList);
   }
 }
+
+
+function updateAll() {
+  seattle.dayCalc();
+  seattle.siteUpdate();
+  tokyo.dayCalc();
+  tokyo.siteUpdate();
+  dubai.dayCalc();
+  dubai.siteUpdate();
+  paris.dayCalc();
+  paris.siteUpdate();
+  lima.dayCalc();
+  lima.siteUpdate();
+}
+
+updateAll();

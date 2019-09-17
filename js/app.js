@@ -43,15 +43,39 @@ Store.prototype.dayCalc = function () {
 
 
 
+Store.prototype.addToTable = function () {
+
+  //first run dayCalc to update the dailySales array
+  this.dayCalc();
+
+  //make a row for this store and append it to tbody
+  var storeRow = document.createElement('tr');
+  tbody.appendChild(storeRow);
+
+  //make the first td the store name
+  var storeName = document.createElement('td');
+  storeName.textContent = this.location;
+  storeRow.appendChild(storeName);
+
+  // make a td for each hour and append it to the trow
+  for (var i = 0; i < this.dailySales.length; i++) {
+    var hourData = document.createElement('td');
+    hourData.textContent = this.dailySales[i];
+    storeRow.appendChild(hourData);
+  }
+
+}
+
+//these are global variables so that our addToTable and render functions can both use them:
 var tbody = document.createElement('tbody');
 var salesTable = document.getElementById('salesData');
 
 
 function render() {
   //first reset the table in case this was called already:
-  
-  resetTable();
+  //WIP but doesn't break anything:
 
+  resetTable();
 
   //TABLE HEADER:
   //create a table header and a row for it, append them
@@ -63,6 +87,7 @@ function render() {
   //add a blank td for the top left area
   var topLeftBlock = document.createElement('td');
   tableHeaderRow.appendChild(topLeftBlock);
+  topLeftBlock.innerHTML = '<img src="https://github.com/codefellows/201d52-lab06/raw/master/assets/salmon.png" alt="salmon logo" id="tinySalmon">';
 
   //add a td for each hour of the day
   for (var i = 0; i < hoursOfOperation.length; i++) {
@@ -83,30 +108,6 @@ function render() {
   //run .addToTable() on each store
   for (var i = 0; i < Store.stores.length; i++) {
     Store.stores[i].addToTable();
-  }
-
-}
-
-
-Store.prototype.addToTable = function () {
-
-  //first run dayCalc to update the dailySales array
-  this.dayCalc();
-
-  //make a row for this store and append it to tbody
-  var storeRow = document.createElement('tr');
-  tbody.appendChild(storeRow);
-
-  //make the first td the store name
-  var storeName = document.createElement('td');
-  storeName.textContent = this.location;
-  storeRow.appendChild(storeName);
-
-  // make a td for each hour and append it to the trow
-  for (var i = 0; i < this.dailySales.length; i++) {
-    var hourData = document.createElement('td');
-    hourData.textContent = this.dailySales[i];
-    storeRow.appendChild(hourData);
   }
 
 }

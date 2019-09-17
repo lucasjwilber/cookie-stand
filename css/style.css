@@ -62,3 +62,9 @@ nav {
 nav td {
   padding: 0 6em;
 }
+p {
+  font-size: 2em;
+  color: #FFD2AD;
+  font-family: 'Bangers', cursive;
+  margin: 2em;
+}

@@ -24,7 +24,7 @@ ul {
   background-color: #854612;
   color: #FFD2AD;
   float: left;
-  margin: 1em;
+  margin: 1em 5%;
   font-size: 1em;
 }
 li {
@@ -37,16 +37,28 @@ li {
 h1 {
   font-size: 2.5em;
   font-family: 'Bangers', cursive;
-  background-color: #3D1C00;
-  color: #FFD2AD;
+  padding: 3px;
 }
 h3 {
-  font-size: 2em;
-  color: #FFD2AD;
-  background-color: #3D1C00;
+  padding: 3px;
+  font-size: 2.5em;
 }
-footer {
-  position: absolute:
-  bottom: 0;
-  width: 100%;
+header {
+  margin: 3%;
+  padding: 2px;
+  background-color: #3D1C00;
+  color: #FFD2AD;
+}
+td {
+  float: left;
+  padding: 4px 3.25em;
+  margin: 0 3em;
+  font-family: 'Lato', sans-serif;
+  color: #FFD2AD;
+}
+td a:link {
+  color: #FFD2AD;
+}
+td a:visited {
+  color: #FFD2AD;
 }

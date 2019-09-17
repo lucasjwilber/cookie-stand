@@ -49,12 +49,17 @@ header {
   background-color: #3D1C00;
   color: #FFD2AD;
 }
-td {
-  float: left;
-  padding: 4px 3.25em;
-  margin: 0 3em;
+header td {
+  padding: 0 2em;
+}
+#salesData {
+  margin: 6px auto;
+}
+#salesData td {
+  padding: 4px;
   font-family: 'Lato', sans-serif;
   color: #FFD2AD;
+  border: 2px solid black;
 }
 td a:link {
   color: #FFD2AD;

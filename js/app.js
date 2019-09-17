@@ -14,11 +14,15 @@ function Store(location, minCustomersPerHour, maxCustomersPerHour, avgCookiesPer
   //add this store to the master stores list array
   Store.stores.push(this);
 }
-
 Store.stores = [];
 
 
 Store.prototype.dayCalc = function () {
+
+  //first reset dailySales and dailyTotal incase this was called after resetTable()
+  this.dailySales = [];
+  this.dailyTotal = 0;
+
   //1. for every hour of operation, 
   for (var i = 0; i < hoursOfOperation.length; i++) {
     //calculate a random number of customers... 
@@ -39,15 +43,15 @@ Store.prototype.dayCalc = function () {
 
 
 
-function updateTable() {
-
-  //first run dayCalc for each store to populate the sales array
-  for (var i = 0; i < Store.stores.length; i++) {
-    Store.stores[i].dayCalc();
-  }
+var tbody = document.createElement('tbody');
+var salesTable = document.getElementById('salesData');
 
 
-  var salesTable = document.getElementById('salesData');
+function render() {
+  //first reset the table in case this was called already:
+  
+  resetTable();
+
 
   //TABLE HEADER:
   //create a table header and a row for it, append them
@@ -74,29 +78,45 @@ function updateTable() {
 
 
   ///////////////////TABLE BODY:
-  var tbody = document.createElement('tbody');
   salesTable.appendChild(tbody);
 
-  //for each store in Store.stores,
+  //run .addToTable() on each store
   for (var i = 0; i < Store.stores.length; i++) {
-
-    //make a row for this store and append it to tbody
-    var storeRow = document.createElement('tr');
-    tbody.appendChild(storeRow);
-
-    //make the first td the store name
-    var storeName = document.createElement('td');
-    storeName.textContent = Store.stores[i].location;
-    storeRow.appendChild(storeName);
-    
-    // make a td for each hour and append it to the trow
-    for (var j = 0; j < Store.stores[i].dailySales.length; j++) {
-      var hourData = document.createElement('td');
-      hourData.textContent = Store.stores[i].dailySales[j];
-      storeRow.appendChild(hourData);
-    }
+    Store.stores[i].addToTable();
   }
 
+}
+
+
+Store.prototype.addToTable = function () {
+
+  //first run dayCalc to update the dailySales array
+  this.dayCalc();
+
+  //make a row for this store and append it to tbody
+  var storeRow = document.createElement('tr');
+  tbody.appendChild(storeRow);
+
+  //make the first td the store name
+  var storeName = document.createElement('td');
+  storeName.textContent = this.location;
+  storeRow.appendChild(storeName);
+
+  // make a td for each hour and append it to the trow
+  for (var i = 0; i < this.dailySales.length; i++) {
+    var hourData = document.createElement('td');
+    hourData.textContent = this.dailySales[i];
+    storeRow.appendChild(hourData);
+  }
+
+}
+
+function resetTable() {
+  var salesData = salesTable.firstElementChild;
+  while (salesData) {
+    salesData.remove();
+    salesData = salesTable.firstElementChild;
+  }
 }
 
 
@@ -108,5 +128,5 @@ var paris = new Store('Paris', 20, 38, 2.3);
 var lima = new Store('Lima', 2, 16, 4.6);
 
 
-updateTable();
+render();
 

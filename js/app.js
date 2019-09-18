@@ -211,9 +211,6 @@ function makeStore(event) {
 
 
 
-
-
-
 //staffing table:
 
 function buildStaffingHeader() {
@@ -235,6 +232,10 @@ function buildStaffingHeader() {
   }
 }
 
+
+
+
+
 Store.prototype.addStaffingRow = function () {
 
   //make a row with a store name td first
@@ -254,6 +255,7 @@ Store.prototype.addStaffingRow = function () {
     staffReqTd.textContent = this.staffReq[i];
     storeRow.appendChild(staffReqTd);
   }
+
 }
 
 
@@ -265,7 +267,5 @@ var tokyo = new Store('Tokyo', 3, 24, 1.2);
 var dubai = new Store('Dubai', 11, 38, 3.7);
 var paris = new Store('Paris', 20, 38, 2.3);
 var lima = new Store('Lima', 2, 16, 4.6);
-
-
 buildTable();
 buildStaffingHeader();

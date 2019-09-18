@@ -6,6 +6,9 @@ var hoursOfOperation = ['6am', '7am', '8am', '9am', '10am', '11am', '12am', '1pm
 //multiply maxCustomersPerHour to this:
 var controlCurve = [0.5, 0.75, 1.0, 0.6, 0.8, 1.0, 0.7, 0.4, 0.6, 0.9, 0.7, 0.5, 0.3, 0.4, 0.6];
 
+
+
+
 //store constructor function
 function Store(location, minCustomersPerHour, maxCustomersPerHour, avgCookiesPerCustomer) {
   this.location = location;
@@ -15,7 +18,12 @@ function Store(location, minCustomersPerHour, maxCustomersPerHour, avgCookiesPer
   //add this store to the master stores list array
   Store.stores.push(this);
 }
+//add an array to keep track of our stores
 Store.stores = [];
+
+
+
+
 
 //calculates the number of cookies sold each hour of the day
 Store.prototype.dayCalc = function () {
@@ -37,23 +45,33 @@ Store.prototype.dayCalc = function () {
     //update the running total of cookies sold
     this.dailyTotal += cookiesSoldPerHour;
   }
-
   //then add the total to the end of the dailySales array
   this.dailySales.push(this.dailyTotal);
 }
 
 
+
+
+
 //these are global variables so that our addToTable and render functions can both use them:
+//may be able to put these into our subconstructor funcs
 var tbody = document.createElement('tbody');
 var salesTable = document.getElementById('salesData');
 
+// //WIP: still not working correctly but doesn't break anything
+function resetTable() {
+  var salesData = salesTable.firstElementChild;
+  while (salesData) {
+    salesData.remove();
+    salesData = salesTable.firstElementChild;
+  }
+}
 
-function render() {
-  //first reset the table in case this was called already:
-  //  WIP, render still makes one table for every time it's been called after load:
-  resetTable();
 
-  //TABLE HEADER:
+
+
+
+function tableHeader() {
   //create a table header and a row for it, append them
   var tableHeader = document.createElement('thead');
   salesTable.appendChild(tableHeader);
@@ -76,56 +94,12 @@ function render() {
   var totalTd = document.createElement('td');
   totalTd.textContent = 'Total';
   tableHeaderRow.appendChild(totalTd);
-
-
-  //TABLE BODY:
-  salesTable.appendChild(tbody);
-
-  //run .addToTable() on each store
-  for (var i = 0; i < Store.stores.length; i++) {
-    Store.stores[i].addToTable();
-  }
-
-
-  // //TABLE FOOTER:
-  // var footerEl = document.createElement('tfoot');
-  // salesTable.appendChild(footerEl);
-  // var hourlyTotalsRow = document.createElement('tr');
-  // footerEl.appendChild(hourlyTotalsRow);
-  // var footerTd = document.createElement('td');
-  // footerTd.textContent = 'Hourly Totals:';
-  // hourlyTotalsRow.appendChild(footerTd);
-  // //WIP:
-
-  // for (var i = 0; i < hoursOfOperation.length; i++) {
-
-  //   //make and append a td for each hour
-  //   var hourSum = document.createElement('td');
-  //   hourlyTotalsRow.appendChild(hourSum);
-  //   var sum = 0;
-
-  //   for (var j = 0; j < Store.stores[j]; j++) {
-
-  //     sum += Store.stores[j].dailySales[i];
-  //     hourSum.textContent = sum;
-
-  //   }
-
-
-  // }
-
-
 }
 
 
 
 
-
-
 Store.prototype.addToTable = function () {
-
-  //reset everything first in case this is being called after resetTable()
-  //then run dayCalc to update the dailySales array
   this.dailySales = [];
   this.dailyTotal = 0;
   this.dayCalc();
@@ -145,23 +119,70 @@ Store.prototype.addToTable = function () {
     hourData.textContent = this.dailySales[i];
     storeRow.appendChild(hourData);
   }
-
 }
 
 
 
 
 
-// //WIP:
-function resetTable() {
-  var salesData = salesTable.firstElementChild;
-  while (salesData) {
-    salesData.remove();
-    salesData = salesTable.firstElementChild;
+function tableBody() {
+  salesTable.appendChild(tbody);
+  //run .addToTable() on each store
+  for (var i = 0; i < Store.stores.length; i++) {
+    Store.stores[i].addToTable();
   }
 }
 
 
+
+
+
+function tableFooter() {
+
+  //create the footer row element and the first td for it
+  var footerEl = document.createElement('tfoot');
+  salesTable.appendChild(footerEl);
+  var hourlyTotalsRow = document.createElement('tr');
+  footerEl.appendChild(hourlyTotalsRow);
+  var footerTd = document.createElement('td');
+  footerTd.textContent = 'Totals:';
+  hourlyTotalsRow.appendChild(footerTd);
+
+  //this is for the total td at the end
+  var total = 0;
+
+  //for each hour make a column
+  for (var i = 0; i < hoursOfOperation.length; i++) {
+
+    var hourlySum = document.createElement('td');
+    hourlyTotalsRow.appendChild(hourlySum);
+    var sum = 0;
+
+    //for each column get the total, stored in sum
+    for (var j = 0; j < Store.stores.length; j++) {
+      sum += Store.stores[j].dailySales[i];
+      hourlySum.textContent = sum;
+    }
+
+    //for every column, add the sum to our total
+    total += sum;
+  }
+
+  var totalTd = document.createElement('td');
+  hourlyTotalsRow.appendChild(totalTd);
+  //total of totals:
+  totalTd.textContent = total;
+}
+
+
+
+//run our subconstructor functions in order to build the table
+function buildTable() {
+  resetTable();
+  tableHeader();
+  tableBody();
+  tableFooter();
+}
 
 var seattle = new Store('Seattle', 23, 65, 6.3);
 var tokyo = new Store('Tokyo', 3, 24, 1.2);
@@ -170,5 +191,5 @@ var paris = new Store('Paris', 20, 38, 2.3);
 var lima = new Store('Lima', 2, 16, 4.6);
 
 
-render();
+buildTable();
 

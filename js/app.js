@@ -29,6 +29,7 @@ Store.prototype.dayCalc = function () {
   //1. for every hour of operation, 
   for (var i = 0; i < hoursOfOperation.length; i++) {
     //calculate a random number of customers... 
+    //then multiply it by the corresponding percentage in the control curve
     var customersPerHour = (Math.floor(Math.random() * (this.maxCustomersPerHour - this.minCustomersPerHour + 1) + this.minCustomersPerHour)) * controlCurve[i];
     //...and then using that, a number of cookies sold
     var cookiesSoldPerHour = Math.round(customersPerHour * this.avgCookiesPerCustomer);

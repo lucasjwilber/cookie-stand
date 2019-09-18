@@ -55,7 +55,7 @@ header td a:link, header td a:visited {
 #salesData td:last-child {
   font-weight: bold;
 }
-#tinySalmon {
+.tinySalmon {
   width: 3em;
 }
 nav {
@@ -89,4 +89,22 @@ input {
   color:  #FFD2AD;
   font-weight: bold;
 }
-  
+#staffingTable {
+  margin: 2em auto;
+}
+#staffingTable td {
+  background-color: #FFD2AD;
+  font-size: 1.5em;
+  border: 3px solid black;
+  padding: 2px;
+}
+h5 {
+  font-size: 2em;
+  background-color: #BA743A;
+  width: 12em;
+  margin: 0 auto;
+  padding: 2px;
+  border-radius: 10px;
+  border: 2px solid black;
+  font-family: 'Lato', sans-serif;
+}

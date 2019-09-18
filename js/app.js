@@ -20,6 +20,7 @@ function Store(location, minCustomersPerHour, maxCustomersPerHour, avgCookiesPer
   Store.stores.push(this);
   //upon creation, add this store to the sales data table
   this.addToTable();
+  this.addStaffingRow();
   //with every new store created, evensCounter switches from negative to positive
   evensCounter *= -1;
 }
@@ -36,12 +37,15 @@ Store.prototype.dayCalc = function () {
   //first create/reset these:
   this.dailySales = [];
   this.dailyTotal = 0;
+  this.staffReq = [];
 
   //1. for every hour of operation, 
   for (var i = 0; i < hoursOfOperation.length; i++) {
     //calculate a random number of customers... 
     //then multiply it by the corresponding percentage in the control curve
     var customersPerHour = (Math.floor(Math.random() * (this.maxCustomersPerHour - this.minCustomersPerHour + 1) + this.minCustomersPerHour)) * controlCurve[i];
+    //use this to set the staffing requirement for this hour:
+    this.staffReq.push(Math.max(Math.ceil(customersPerHour / 20), 2));
     //...and then using that, a number of cookies sold
     var cookiesSoldPerHour = Math.round(customersPerHour * this.avgCookiesPerCustomer);
     //then push that data to the dailySales array
@@ -81,7 +85,7 @@ function tableHeader() {
   //add a blank td for the top left area
   var topLeftBlock = document.createElement('td');
   tableHeaderRow.appendChild(topLeftBlock);
-  topLeftBlock.innerHTML = '<img src="https://github.com/codefellows/201d52-lab06/raw/master/assets/salmon.png" alt="salmon logo" id="tinySalmon">';
+  topLeftBlock.innerHTML = '<img src="https://github.com/codefellows/201d52-lab06/raw/master/assets/salmon.png" alt="salmon logo" class="tinySalmon">';
 
   //add a td for each hour of the day
   for (var i = 0; i < hoursOfOperation.length; i++) {
@@ -207,6 +211,55 @@ function makeStore(event) {
 
 
 
+
+
+
+//staffing table:
+
+function buildStaffingHeader() {
+
+  //make the header row:
+  var staffingTable = document.getElementById('staffingTable');
+  var staffingHeader = document.createElement('thead');
+  staffingTable.appendChild(staffingHeader);
+  var staffingHeaderRow = document.createElement('tr');
+  staffingHeader.appendChild(staffingHeaderRow);
+  //make a td for each time, first one empty:
+  var emptyTd = document.createElement('td')
+  emptyTd.innerHTML = '<img src="https://github.com/codefellows/201d52-lab06/raw/master/assets/salmon.png" alt="salmon logo" class="tinySalmon">';
+  staffingHeaderRow.appendChild(emptyTd)
+  for (var i = 0; i < hoursOfOperation.length; i++) {
+    var hourTd = document.createElement('td')
+    hourTd.textContent = hoursOfOperation[i];
+    staffingHeaderRow.appendChild(hourTd);
+  }
+}
+
+Store.prototype.addStaffingRow = function () {
+
+  //make a row with a store name td first
+  var storeRow = document.createElement('tr');
+  staffingTable.appendChild(storeRow);
+  var locTd = document.createElement('td');
+  locTd.textContent = this.location;
+  storeRow.appendChild(locTd);
+  //make even rows opaque
+  if (evensCounter === -1) {
+    storeRow.classList.add('even');
+  }
+
+  //then make a td for each index of staffReq
+  for (var i = 0; i < this.staffReq.length; i++) {
+    var staffReqTd = document.createElement('td');
+    staffReqTd.textContent = this.staffReq[i];
+    storeRow.appendChild(staffReqTd);
+  }
+}
+
+
+
+
+
 var seattle = new Store('Seattle', 23, 65, 6.3);
 var tokyo = new Store('Tokyo', 3, 24, 1.2);
 var dubai = new Store('Dubai', 11, 38, 3.7);
@@ -214,14 +267,5 @@ var paris = new Store('Paris', 20, 38, 2.3);
 var lima = new Store('Lima', 2, 16, 4.6);
 
 
-
-
-
 buildTable();
-
-
-
-
-
-
-
+buildStaffingHeader();

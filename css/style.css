@@ -36,7 +36,7 @@ header td a:link, header td a:visited {
   color: #FFD2AD;
 }
 #salesData {
-  margin: 4em auto;
+  margin: 2em auto;
 }
 #salesData td {
   padding: 4px;
@@ -67,4 +67,22 @@ p {
   color: #FFD2AD;
   font-family: 'Bangers', cursive;
   margin: 2em;
+}
+#storeAddForm {
+  border: 2px ridge black;
+  width: 200px;
+  margin: 2em auto;
+  padding: 6px;
+  background-color: #ECA870;
+  font-family: 'Lato', sans-serif;
+}
+input {
+  background-color: #FFD2AD;
+  margin: 3px;
+  padding: 2px;
+}
+#storeAddForm fieldset input:last-child {
+  background-color: #854612;
+  color:  #FFD2AD;
+  font-weight: bold;
 }

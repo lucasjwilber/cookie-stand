@@ -2,14 +2,13 @@
 
 //this is where the all the lists for each shop are created on sales.html
 var hoursOfOperation = ['6am', '7am', '8am', '9am', '10am', '11am', '12am', '1pm', '2pm', '3pm', '4pm', '5pm', '6pm', '7pm',];
-
 //multiply maxCustomersPerHour to this:
 var controlCurve = [0.5, 0.75, 1.0, 0.6, 0.8, 1.0, 0.7, 0.4, 0.6, 0.9, 0.7, 0.5, 0.3, 0.4, 0.6];
+var salesTable = document.getElementById('salesData');
+var tbody = document.createElement('tbody');
 
 
 
-
-//store constructor function
 function Store(location, minCustomersPerHour, maxCustomersPerHour, avgCookiesPerCustomer) {
   this.location = location;
   this.minCustomersPerHour = minCustomersPerHour;
@@ -17,6 +16,8 @@ function Store(location, minCustomersPerHour, maxCustomersPerHour, avgCookiesPer
   this.avgCookiesPerCustomer = avgCookiesPerCustomer;
   //add this store to the master stores list array
   Store.stores.push(this);
+  //upon creation, add this store to the sales data table
+  this.addToTable();
 }
 //add an array to keep track of our stores
 Store.stores = [];
@@ -28,7 +29,7 @@ Store.stores = [];
 //calculates the number of cookies sold each hour of the day
 Store.prototype.dayCalc = function () {
 
-  //first reset dailySales and dailyTotal incase this was called after resetTable()
+  //first create/reset these:
   this.dailySales = [];
   this.dailyTotal = 0;
 
@@ -52,11 +53,6 @@ Store.prototype.dayCalc = function () {
 
 
 
-
-//these are global variables so that our addToTable and render functions can both use them:
-//may be able to put these into our subconstructor funcs
-var tbody = document.createElement('tbody');
-var salesTable = document.getElementById('salesData');
 
 // //WIP: still not working correctly but doesn't break anything
 function resetTable() {
@@ -89,12 +85,12 @@ function tableHeader() {
     hourTd.textContent = hoursOfOperation[i];
     tableHeaderRow.appendChild(hourTd);
   }
-
   //add a Total td at the end
   var totalTd = document.createElement('td');
   totalTd.textContent = 'Total';
   tableHeaderRow.appendChild(totalTd);
 }
+
 
 
 
@@ -125,20 +121,7 @@ Store.prototype.addToTable = function () {
 
 
 
-function tableBody() {
-  salesTable.appendChild(tbody);
-  //run .addToTable() on each store
-  for (var i = 0; i < Store.stores.length; i++) {
-    Store.stores[i].addToTable();
-  }
-}
-
-
-
-
-
 function tableFooter() {
-
   //create the footer row element and the first td for it
   var footerEl = document.createElement('tfoot');
   salesTable.appendChild(footerEl);
@@ -153,7 +136,6 @@ function tableFooter() {
 
   //for each hour make a column
   for (var i = 0; i < hoursOfOperation.length; i++) {
-
     var hourlySum = document.createElement('td');
     hourlyTotalsRow.appendChild(hourlySum);
     var sum = 0;
@@ -176,13 +158,44 @@ function tableFooter() {
 
 
 
-//run our subconstructor functions in order to build the table
+
+
 function buildTable() {
   resetTable();
+  salesTable.appendChild(tbody);
   tableHeader();
-  tableBody();
   tableFooter();
 }
+
+
+
+
+
+//form stuff:
+var storeForm = document.getElementById('storeAddForm');
+storeForm.addEventListener('submit', makeStore);
+var latestStore;
+
+function makeStore(event) {
+  event.preventDefault();
+  var location = event.target.locationField.value;
+  var minCust = event.target.minCustField.value;
+  var maxCust = event.target.maxCustField.value;
+  var avgCookies = event.target.avgCookiesField.value;
+
+  //construct a store using the form data as arguments
+  new Store(location, minCust, maxCust, avgCookies);
+
+  //clear the form after submission
+  event.target.locationField.value = null;
+  event.target.minCustField.value = null;
+  event.target.maxCustField.value = null;
+  event.target.avgCookiesField.value = null;
+}
+
+
+
+
 
 var seattle = new Store('Seattle', 23, 65, 6.3);
 var tokyo = new Store('Tokyo', 3, 24, 1.2);
@@ -191,31 +204,10 @@ var paris = new Store('Paris', 20, 38, 2.3);
 var lima = new Store('Lima', 2, 16, 4.6);
 
 
+
+
+
 buildTable();
-
-//form handler
-var storeForm = document.getElementById('storeAddForm');
-
-storeForm.addEventListener('submit', makeStore);
-
-function makeStore(event) {
-  event.preventDefault();
-  console.log('button pressed');
-
-  var location = event.target.locationField.value;
-  var minCust = event.target.minCustField.value;
-  var maxCust = event.target.maxCustField.value;
-  var avgCookies = event.target.avgCookiesField.value;
-
-  new Store(location, minCust, maxCust, avgCookies);
-  console.log(Store.stores);
-
-
-
-}
-
-
-
 
 
 

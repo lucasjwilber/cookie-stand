@@ -3,6 +3,9 @@
 //this is where the all the lists for each shop are created on sales.html
 var hoursOfOperation = ['6am', '7am', '8am', '9am', '10am', '11am', '12am', '1pm', '2pm', '3pm', '4pm', '5pm', '6pm', '7pm',];
 
+//multiply maxCustomersPerHour to this:
+var controlCurve = [0.5, 0.75, 1.0, 0.6, 0.8, 1.0, 0.7, 0.4, 0.6, 0.9, 0.7, 0.5, 0.3, 0.4, 0.6];
+
 //store constructor function
 function Store(location, minCustomersPerHour, maxCustomersPerHour, avgCookiesPerCustomer) {
   this.location = location;
@@ -26,7 +29,7 @@ Store.prototype.dayCalc = function () {
   //1. for every hour of operation, 
   for (var i = 0; i < hoursOfOperation.length; i++) {
     //calculate a random number of customers... 
-    var customersPerHour = Math.floor(Math.random() * (this.maxCustomersPerHour - this.minCustomersPerHour + 1) + this.minCustomersPerHour);
+    var customersPerHour = (Math.floor(Math.random() * (this.maxCustomersPerHour - this.minCustomersPerHour + 1) + this.minCustomersPerHour)) * controlCurve[i];
     //...and then using that, a number of cookies sold
     var cookiesSoldPerHour = Math.round(customersPerHour * this.avgCookiesPerCustomer);
     //then push that data to the dailySales array
@@ -73,9 +76,8 @@ var salesTable = document.getElementById('salesData');
 
 function render() {
   //first reset the table in case this was called already:
-  //WIP but doesn't break anything:
-
-  resetTable();
+  //  WIP:
+  //resetTable();
 
   //TABLE HEADER:
   //create a table header and a row for it, append them
@@ -112,6 +114,7 @@ function render() {
 
 }
 
+//WIP:
 function resetTable() {
   var salesData = salesTable.firstElementChild;
   while (salesData) {

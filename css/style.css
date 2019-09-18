@@ -45,6 +45,9 @@ header td a:link, header td a:visited {
   background-color: #FFD2AD;
   border: 1px solid black;
 }
+.even td {
+  opacity: .8;
+}
 #salesData thead td, #salesData td:first-child {
   background-color: #BA743A;
   border: 2px solid black;
@@ -86,3 +89,4 @@ input {
   color:  #FFD2AD;
   font-weight: bold;
 }
+  

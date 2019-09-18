@@ -6,6 +6,8 @@ var hoursOfOperation = ['6am', '7am', '8am', '9am', '10am', '11am', '12am', '1pm
 var controlCurve = [0.5, 0.75, 1.0, 0.6, 0.8, 1.0, 0.7, 0.4, 0.6, 0.9, 0.7, 0.5, 0.3, 0.4, 0.6];
 var salesTable = document.getElementById('salesData');
 var tbody = document.createElement('tbody');
+var evensCounter = -1;
+
 
 
 
@@ -18,6 +20,8 @@ function Store(location, minCustomersPerHour, maxCustomersPerHour, avgCookiesPer
   Store.stores.push(this);
   //upon creation, add this store to the sales data table
   this.addToTable();
+  //with every new store created, evensCounter switches from negative to positive
+  evensCounter *= -1;
 }
 //add an array to keep track of our stores
 Store.stores = [];
@@ -104,6 +108,11 @@ Store.prototype.addToTable = function () {
   var storeRow = document.createElement('tr');
   tbody.appendChild(storeRow);
 
+  //if this is an even row give it class 'even'
+  if (evensCounter === -1) {
+    storeRow.classList.add('even');
+  }
+
   //make the first td the store name
   var storeName = document.createElement('td');
   storeName.textContent = this.location;
@@ -115,6 +124,7 @@ Store.prototype.addToTable = function () {
     hourData.textContent = this.dailySales[i];
     storeRow.appendChild(hourData);
   }
+
 }
 
 
@@ -208,7 +218,6 @@ var lima = new Store('Lima', 2, 16, 4.6);
 
 
 buildTable();
-
 
 
 

@@ -12,14 +12,12 @@ function Store(location, minCustomersPerHour, maxCustomersPerHour, avgCookiesPer
   this.minCustomersPerHour = minCustomersPerHour;
   this.maxCustomersPerHour = maxCustomersPerHour;
   this.avgCookiesPerCustomer = avgCookiesPerCustomer;
-  this.dailySales = [];
-  this.dailyTotal = 0;
   //add this store to the master stores list array
   Store.stores.push(this);
 }
 Store.stores = [];
 
-
+//calculates the number of cookies sold each hour of the day
 Store.prototype.dayCalc = function () {
 
   //first reset dailySales and dailyTotal incase this was called after resetTable()
@@ -49,7 +47,10 @@ Store.prototype.dayCalc = function () {
 
 Store.prototype.addToTable = function () {
 
-  //first run dayCalc to update the dailySales array
+  //reset everything first in case this is being called after resetTable()
+  //then run dayCalc to update the dailySales array
+  this.dailySales = [];
+  this.dailyTotal = 0;
   this.dayCalc();
 
   //make a row for this store and append it to tbody
@@ -77,8 +78,8 @@ var salesTable = document.getElementById('salesData');
 
 function render() {
   //first reset the table in case this was called already:
-  //  WIP:
-  //resetTable();
+  //  WIP, render still makes one table for every time it's been called after load:
+  resetTable();
 
   //TABLE HEADER:
   //create a table header and a row for it, append them
@@ -105,7 +106,7 @@ function render() {
   tableHeaderRow.appendChild(totalTd);
 
 
-  ///////////////////TABLE BODY:
+  //TABLE BODY:
   salesTable.appendChild(tbody);
 
   //run .addToTable() on each store
@@ -115,7 +116,7 @@ function render() {
 
 }
 
-//WIP:
+// //WIP:
 function resetTable() {
   var salesData = salesTable.firstElementChild;
   while (salesData) {

@@ -14,20 +14,37 @@
     <nav>
       <table>
         <tr>
-            <td><a href="index.html">Home</a></td>
-            <td>About Us</td>
-            <td>Hours & Locations</td>
-            <td>Contact Us</td>
-            <td><a href="sales.html">Sales Info</a></td>
+          <td><a href="index.html">Home</a></td>
+          <td>About Us</td>
+          <td>Hours & Locations</td>
+          <td>Contact Us</td>
+          <td><a href="sales.html">Sales Info</a></td>
         </tr>
       </table>
     </nav>
   </header>
 
+  <form id="storeAddForm">
+    <fieldset>
+      Store Location:<br>
+      <input type="text" name="locationField" placeholder="Ex: Seattle"><br>
+      Min. Customers:<br>
+      <input type="text" name="minCustField" placeholder="Min customers per hour"><br>
+      Max. Customers:<br>
+      <input type="text" name="maxCustField" placeholder="Max customers per hour"><br>
+      Avg. Cookies Bought by Customer:<br>
+      <input type="text" name="avgCookiesField" placeholder="Ex: 3.5"><br>
+      <input type="submit" value="Add Store">
+    </fieldset>
+  </form>
+
   <table id="salesData">
   </table>
 
-  <main id="salesUl"></main>
+
+  <table id="staffingTable">
+    <h5>Staffing Requirements:</h5>
+  </table>
 
   <script src="js/app.js"></script>
 </body>

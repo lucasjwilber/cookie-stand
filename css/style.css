@@ -36,7 +36,7 @@ header td a:link, header td a:visited {
   color: #FFD2AD;
 }
 #salesData {
-  margin: 4em auto;
+  margin: 2em auto;
 }
 #salesData td {
   padding: 4px;
@@ -45,6 +45,9 @@ header td a:link, header td a:visited {
   background-color: #FFD2AD;
   border: 1px solid black;
 }
+.even td {
+  opacity: .8;
+}
 #salesData thead td, #salesData td:first-child {
   background-color: #BA743A;
   border: 2px solid black;
@@ -52,7 +55,7 @@ header td a:link, header td a:visited {
 #salesData td:last-child {
   font-weight: bold;
 }
-#tinySalmon {
+.tinySalmon {
   width: 3em;
 }
 nav {
@@ -67,4 +70,41 @@ p {
   color: #FFD2AD;
   font-family: 'Bangers', cursive;
   margin: 2em;
+}
+#storeAddForm {
+  border: 2px ridge black;
+  width: 200px;
+  margin: 2em auto;
+  padding: 6px;
+  background-color: #ECA870;
+  font-family: 'Lato', sans-serif;
+}
+input {
+  background-color: #FFD2AD;
+  margin: 3px;
+  padding: 2px;
+}
+#storeAddForm fieldset input:last-child {
+  background-color: #854612;
+  color:  #FFD2AD;
+  font-weight: bold;
+}
+#staffingTable {
+  margin: 2em auto;
+}
+#staffingTable td {
+  background-color: #FFD2AD;
+  font-size: 1.5em;
+  border: 3px solid black;
+  padding: 2px;
+}
+h5 {
+  font-size: 2em;
+  background-color: #BA743A;
+  width: 12em;
+  margin: 0 auto;
+  padding: 2px;
+  border-radius: 10px;
+  border: 2px solid black;
+  font-family: 'Lato', sans-serif;
 }

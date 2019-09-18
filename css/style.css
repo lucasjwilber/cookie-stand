@@ -28,7 +28,7 @@ h3 {
   font-size: 2.5em;
 }
 header {
-  padding: 2px;
+  padding: 1px;
   background-color: #3D1C00;
   color: #FFD2AD;
 }
@@ -63,9 +63,9 @@ nav {
   padding: 0 2em;
 }
 nav td {
-  padding: 0 6em;
+  padding: 0 7em;
 }
-p {
+h6 {
   font-size: 2em;
   color: #FFD2AD;
   font-family: 'Bangers', cursive;
@@ -107,4 +107,19 @@ h5 {
   border-radius: 10px;
   border: 2px solid black;
   font-family: 'Lato', sans-serif;
+}
+p {
+  background-color:#BA743A;
+  padding: 1em;
+  margin: 0 auto;
+  font-family: 'Modak', cursive;
+  font-size: 2em;
+}
+#gordon {
+  width: 12em;
+  float: left;
+}
+#fishcookie {
+  width: 12em;
+  float: right;
 }

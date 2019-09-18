@@ -193,3 +193,34 @@ var lima = new Store('Lima', 2, 16, 4.6);
 
 buildTable();
 
+//form handler
+var storeForm = document.getElementById('storeAddForm');
+
+storeForm.addEventListener('submit', makeStore);
+
+function makeStore(event) {
+  event.preventDefault();
+  console.log('button pressed');
+
+  var location = event.target.locationField.value;
+  var minCust = event.target.minCustField.value;
+  var maxCust = event.target.maxCustField.value;
+  var avgCookies = event.target.avgCookiesField.value;
+
+  new Store(location, minCust, maxCust, avgCookies);
+  console.log(Store.stores);
+
+
+
+}
+
+
+
+
+
+
+
+
+
+
+

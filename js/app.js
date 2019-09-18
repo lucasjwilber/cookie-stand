@@ -43,34 +43,6 @@ Store.prototype.dayCalc = function () {
 }
 
 
-
-
-Store.prototype.addToTable = function () {
-
-  //reset everything first in case this is being called after resetTable()
-  //then run dayCalc to update the dailySales array
-  this.dailySales = [];
-  this.dailyTotal = 0;
-  this.dayCalc();
-
-  //make a row for this store and append it to tbody
-  var storeRow = document.createElement('tr');
-  tbody.appendChild(storeRow);
-
-  //make the first td the store name
-  var storeName = document.createElement('td');
-  storeName.textContent = this.location;
-  storeRow.appendChild(storeName);
-
-  // make a td for each hour and append it to the trow
-  for (var i = 0; i < this.dailySales.length; i++) {
-    var hourData = document.createElement('td');
-    hourData.textContent = this.dailySales[i];
-    storeRow.appendChild(hourData);
-  }
-
-}
-
 //these are global variables so that our addToTable and render functions can both use them:
 var tbody = document.createElement('tbody');
 var salesTable = document.getElementById('salesData');
@@ -114,7 +86,71 @@ function render() {
     Store.stores[i].addToTable();
   }
 
+
+  // //TABLE FOOTER:
+  // var footerEl = document.createElement('tfoot');
+  // salesTable.appendChild(footerEl);
+  // var hourlyTotalsRow = document.createElement('tr');
+  // footerEl.appendChild(hourlyTotalsRow);
+  // var footerTd = document.createElement('td');
+  // footerTd.textContent = 'Hourly Totals:';
+  // hourlyTotalsRow.appendChild(footerTd);
+  // //WIP:
+
+  // for (var i = 0; i < hoursOfOperation.length; i++) {
+
+  //   //make and append a td for each hour
+  //   var hourSum = document.createElement('td');
+  //   hourlyTotalsRow.appendChild(hourSum);
+  //   var sum = 0;
+
+  //   for (var j = 0; j < Store.stores[j]; j++) {
+
+  //     sum += Store.stores[j].dailySales[i];
+  //     hourSum.textContent = sum;
+
+  //   }
+
+
+  // }
+
+
 }
+
+
+
+
+
+
+Store.prototype.addToTable = function () {
+
+  //reset everything first in case this is being called after resetTable()
+  //then run dayCalc to update the dailySales array
+  this.dailySales = [];
+  this.dailyTotal = 0;
+  this.dayCalc();
+
+  //make a row for this store and append it to tbody
+  var storeRow = document.createElement('tr');
+  tbody.appendChild(storeRow);
+
+  //make the first td the store name
+  var storeName = document.createElement('td');
+  storeName.textContent = this.location;
+  storeRow.appendChild(storeName);
+
+  // make a td for each hour and append it to the trow
+  for (var i = 0; i < this.dailySales.length; i++) {
+    var hourData = document.createElement('td');
+    hourData.textContent = this.dailySales[i];
+    storeRow.appendChild(hourData);
+  }
+
+}
+
+
+
+
 
 // //WIP:
 function resetTable() {

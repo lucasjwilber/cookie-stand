@@ -112,8 +112,10 @@ p {
   background-color:#BA743A;
   padding: 1em;
   margin: 0 auto;
-  font-family: 'Modak', cursive;
-  font-size: 2em;
+  margin-top:5px;
+  font-size: 1.5em;
+  border: 3px solid #3D1C00;
+  width: 50vw;
 }
 #gordon {
   width: 12em;
@@ -124,11 +126,19 @@ p {
   float: right;
 }
 #contactPageMain {
-  background-image: url(https://github.com/codefellows/201d52-lab06/raw/master/assets/salmon.png);
+  /* background-image: url(https://github.com/codefellows/201d52-lab06/raw/master/assets/salmon.png); */
   color: #FFD2AD;
   text-shadow:
    -1px -1px 0 #000,  
     1px -1px 0 #000,
     -1px 1px 0 #000,
      1px 1px 0 #000;
+}
+footer {
+  margin: 0 auto;
+}
+footer img {
+  height: 100px;
+  float: left;
+  margin: 0 50px;
 }

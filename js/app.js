@@ -45,7 +45,7 @@ Store.prototype.dayCalc = function () {
     //then multiply it by the corresponding percentage in the control curve
     var customersPerHour = (Math.floor(Math.random() * (this.maxCustomersPerHour - this.minCustomersPerHour + 1) + this.minCustomersPerHour)) * controlCurve[i];
     //use this to set the staffing requirement for this hour:
-    this.staffReq.push(Math.max(Math.ceil(customersPerHour / 20), 2));
+    this.staffReq.push(Math.max(Math.ceil((customersPerHour / 20)), 2));
     //...and then using that, a number of cookies sold
     var cookiesSoldPerHour = Math.round(customersPerHour * this.avgCookiesPerCustomer);
     //then push that data to the dailySales array

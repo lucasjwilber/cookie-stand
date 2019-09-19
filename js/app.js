@@ -1,4 +1,4 @@
-'use strict'
+'use strict';
 
 //this is where the all the lists for each shop are created on sales.html
 var hoursOfOperation = ['6am', '7am', '8am', '9am', '10am', '11am', '12am', '1pm', '2pm', '3pm', '4pm', '5pm', '6pm', '7pm',];
@@ -45,7 +45,7 @@ Store.prototype.dayCalc = function () {
     //then multiply it by the corresponding percentage in the control curve
     var customersPerHour = (Math.floor(Math.random() * (this.maxCustomersPerHour - this.minCustomersPerHour + 1) + this.minCustomersPerHour)) * controlCurve[i];
     //use this to set the staffing requirement for this hour:
-    this.staffReq.push(Math.max(Math.ceil(customersPerHour / 20), 2));
+    this.staffReq.push(Math.max(Math.ceil((customersPerHour / 20)), 2));
     //...and then using that, a number of cookies sold
     var cookiesSoldPerHour = Math.round(customersPerHour * this.avgCookiesPerCustomer);
     //then push that data to the dailySales array
@@ -62,7 +62,7 @@ Store.prototype.dayCalc = function () {
 
 
 
-// //WIP: still not working correctly but doesn't break anything
+//wipe the DOM of all children of the table
 function resetTable() {
   var salesData = salesTable.firstElementChild;
   while (salesData) {
@@ -185,34 +185,7 @@ function buildTable() {
 
 
 
-//form stuff:
-var storeForm = document.getElementById('storeAddForm');
-storeForm.addEventListener('submit', makeStore);
-var latestStore;
-
-function makeStore(event) {
-  event.preventDefault();
-  var location = event.target.locationField.value;
-  var minCust = event.target.minCustField.value;
-  var maxCust = event.target.maxCustField.value;
-  var avgCookies = event.target.avgCookiesField.value;
-
-  //construct a store using the form data as arguments
-  new Store(location, minCust, maxCust, avgCookies);
-
-  //clear the form after submission
-  event.target.locationField.value = null;
-  event.target.minCustField.value = null;
-  event.target.maxCustField.value = null;
-  event.target.avgCookiesField.value = null;
-}
-
-
-
-
-
 //staffing table:
-
 function buildStaffingHeader() {
 
   //make the header row:
@@ -262,10 +235,37 @@ Store.prototype.addStaffingRow = function () {
 
 
 
+//form stuff:
+var storeForm = document.getElementById('storeAddForm');
+storeForm.addEventListener('submit', makeStore);
+var latestStore;
+//TODO: add an if statement that checks if any store already has the name that's trying to be submitted, if so, error the form out or something
+function makeStore(event) {
+  event.preventDefault();
+  var location = event.target.locationField.value;
+  var minCust = event.target.minCustField.value;
+  var maxCust = event.target.maxCustField.value;
+  var avgCookies = event.target.avgCookiesField.value;
+
+  //construct a store using the form data as arguments
+  new Store(location, minCust, maxCust, avgCookies);
+
+  //clear the form after submission
+  event.target.locationField.value = null;
+  event.target.minCustField.value = null;
+  event.target.maxCustField.value = null;
+  event.target.avgCookiesField.value = null;
+}
+
+
+
+
+
 var seattle = new Store('Seattle', 23, 65, 6.3);
 var tokyo = new Store('Tokyo', 3, 24, 1.2);
 var dubai = new Store('Dubai', 11, 38, 3.7);
 var paris = new Store('Paris', 20, 38, 2.3);
 var lima = new Store('Lima', 2, 16, 4.6);
+
 buildTable();
 buildStaffingHeader();

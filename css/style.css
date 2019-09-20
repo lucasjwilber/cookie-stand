@@ -142,3 +142,7 @@ footer img {
   float: left;
   margin: 0 50px;
 }
+#store-main {
+  width: auto;
+  height: auto;
+}

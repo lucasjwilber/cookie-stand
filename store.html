@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Salmon Cookies | Store</title>
+  <link rel="stylesheet" type="text/css" href="css/reset.css">
+  <link rel="stylesheet" type="text/css" href="css/style.css">
+  <link href="https://fonts.googleapis.com/css?family=Bangers|Lato|Modak|Roboto+Slab&display=swap" rel="stylesheet">
+</head>
+
+<body>
+  <header>
+    <h1>Salmon Cookies Store</h1>
+    <nav>
+      <table>
+        <tr>
+          <td><a href="index.html">Home</a></td>
+          <td><a href="about.html">About Us</a></td>
+          <td><a href="hoursAndLocations.html">Hours & Locations</a></td>
+          <td><a href="contact.html">Contact Us</a></td>
+          <td><a href="sales.html">Sales Info</a></td>
+          <td><a href="store.html">Store</a></td>
+        </tr>
+      </table>
+    </nav>
+  </header>
+
+  <main id="store-main">
+    
+    <p>Frosted Cookies: $1 each</p>
+    <img src="https://github.com/codefellows/seattle-201d52/blob/master/class-09/lab/lab-b/assets/frosted-cookie.jpg?raw=true" alt="frosted cookie">
+
+    <p>Cookie Cutters: $8 each</p>
+    <img src="https://github.com/codefellows/seattle-201d52/blob/master/class-09/lab/lab-b/assets/cutter.jpeg?raw=true" alt="cutter">
+
+    <p>T-Shirts: $20 each</p>
+    <img src="https://github.com/codefellows/seattle-201d52/blob/master/class-09/lab/lab-b/assets/shirt.jpg?raw=true" alt="shirt">
+
+    <form id="purchaseForm">
+      <fieldset>
+        Cookies ($1 each):
+        <input type="text" name="buyCookiesField" placeholder="quantity"><br>
+        Cookie Cutters ($8 each):
+        <input type="text" name="buyCuttersField" placeholder="quantity"><br>
+        T-Shirts ($20 each):
+        <input type="text" name="buyShirtsField" placeholder="quantity"><br>
+        Address:
+        <input type="text" name="nameField" placeholder="Name" required><br>
+        <input type="text" name="streetField" placeholder="Street" required><br>
+        <input type="text" name="cityField" placeholder="City" required><br>
+        <input type="text" name="stateField" placeholder="State" required><br>
+        <input type="text" name="zipField" placeholder="Zip Code" required><br>
+        Credit Card Number:
+        <input type="text" name="creditCardField" required><br>
+        CCV:
+        <input type="text" name="ccvField" required><br>
+        Special Instructions:
+        <input type="text" name="specialInstructionsField">
+        <input type="submit" value="Order Now">
+      </fieldset>
+    </form>
+
+  </main>
+
+
+  <script src="js/store.js"></script>
+
+</body>
+
+</html>

@@ -238,7 +238,6 @@ Store.prototype.addStaffingRow = function () {
 //form stuff:
 var storeForm = document.getElementById('storeAddForm');
 storeForm.addEventListener('submit', makeStore);
-var latestStore;
 //TODO: add an if statement that checks if any store already has the name that's trying to be submitted, if so, error the form out or something
 function makeStore(event) {
   event.preventDefault();

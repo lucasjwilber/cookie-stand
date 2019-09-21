@@ -39,9 +39,9 @@ Store.prototype.dayCalc = function () {
   this.dailyTotal = 0;
   this.staffReq = [];
 
-  //1. for every hour of operation, 
+  //1. for every hour of operation,
   for (var i = 0; i < hoursOfOperation.length; i++) {
-    //calculate a random number of customers... 
+    //calculate a random number of customers...
     //then multiply it by the corresponding percentage in the control curve
     var customersPerHour = (Math.floor(Math.random() * (this.maxCustomersPerHour - this.minCustomersPerHour + 1) + this.minCustomersPerHour)) * controlCurve[i];
     //use this to set the staffing requirement for this hour:
@@ -56,7 +56,7 @@ Store.prototype.dayCalc = function () {
   }
   //then add the total to the end of the dailySales array
   this.dailySales.push(this.dailyTotal);
-}
+};
 
 
 
@@ -129,7 +129,7 @@ Store.prototype.addToTable = function () {
     storeRow.appendChild(hourData);
   }
 
-}
+};
 
 
 
@@ -185,21 +185,21 @@ function buildTable() {
 
 
 
+var staffingTable = document.getElementById('staffingTable');
 //staffing table:
 function buildStaffingHeader() {
 
   //make the header row:
-  var staffingTable = document.getElementById('staffingTable');
   var staffingHeader = document.createElement('thead');
   staffingTable.appendChild(staffingHeader);
   var staffingHeaderRow = document.createElement('tr');
   staffingHeader.appendChild(staffingHeaderRow);
   //make a td for each time, first one empty:
-  var emptyTd = document.createElement('td')
+  var emptyTd = document.createElement('td');
   emptyTd.innerHTML = '<img src="https://github.com/codefellows/201d52-lab06/raw/master/assets/salmon.png" alt="salmon logo" class="tinySalmon">';
-  staffingHeaderRow.appendChild(emptyTd)
+  staffingHeaderRow.appendChild(emptyTd);
   for (var i = 0; i < hoursOfOperation.length; i++) {
-    var hourTd = document.createElement('td')
+    var hourTd = document.createElement('td');
     hourTd.textContent = hoursOfOperation[i];
     staffingHeaderRow.appendChild(hourTd);
   }
@@ -229,7 +229,7 @@ Store.prototype.addStaffingRow = function () {
     storeRow.appendChild(staffReqTd);
   }
 
-}
+};
 
 
 
@@ -238,7 +238,6 @@ Store.prototype.addStaffingRow = function () {
 //form stuff:
 var storeForm = document.getElementById('storeAddForm');
 storeForm.addEventListener('submit', makeStore);
-var latestStore;
 //TODO: add an if statement that checks if any store already has the name that's trying to be submitted, if so, error the form out or something
 function makeStore(event) {
   event.preventDefault();
@@ -261,11 +260,11 @@ function makeStore(event) {
 
 
 
-var seattle = new Store('Seattle', 23, 65, 6.3);
-var tokyo = new Store('Tokyo', 3, 24, 1.2);
-var dubai = new Store('Dubai', 11, 38, 3.7);
-var paris = new Store('Paris', 20, 38, 2.3);
-var lima = new Store('Lima', 2, 16, 4.6);
+new Store('Seattle', 23, 65, 6.3);
+new Store('Tokyo', 3, 24, 1.2);
+new Store('Dubai', 11, 38, 3.7);
+new Store('Paris', 20, 38, 2.3);
+new Store('Lima', 2, 16, 4.6);
 
 buildTable();
 buildStaffingHeader();

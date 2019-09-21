@@ -27,13 +27,13 @@
   <form id="storeAddForm">
     <fieldset>
       Store Location:<br>
-      <input type="text" name="locationField" placeholder="Ex: Seattle"><br>
+      <input type="text" name="locationField" placeholder="Ex: Seattle" required><br>
       Min. Customers:<br>
-      <input type="text" name="minCustField" placeholder="Min customers per hour"><br>
+      <input type="number" name="minCustField" placeholder="Min customers per hour" required><br>
       Max. Customers:<br>
-      <input type="text" name="maxCustField" placeholder="Max customers per hour"><br>
+      <input type="number" name="maxCustField" placeholder="Max customers per hour" required><br>
       Avg. Cookies Bought by Customer:<br>
-      <input type="text" name="avgCookiesField" placeholder="Ex: 3.5"><br>
+      <input type="number" name="avgCookiesField" placeholder="Ex: 3.5" required><br>
       <input type="submit" value="Add Store">
     </fieldset>
   </form>

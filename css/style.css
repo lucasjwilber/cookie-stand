@@ -22,6 +22,7 @@ h1 {
   font-size: 2.5em;
   font-family: 'Bangers', cursive;
   padding: 3px;
+  color: rgb(230, 189, 157);
 }
 h3 {
   padding: 3px;
@@ -70,6 +71,7 @@ h6 {
   color: #FFD2AD;
   font-family: 'Bangers', cursive;
   margin: 2em;
+  color: salmon;
 }
 #storeAddForm {
   border: 2px ridge black;
